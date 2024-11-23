@@ -133,6 +133,7 @@ export interface Stat {
 }
 
 export interface Item {
+  href?: string;
   title?: string;
   description?: string;
   icon?: string;
@@ -182,7 +183,7 @@ export interface Disclaimer {
 
 // COMPONENTS
 export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
-  variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
+  variant?: 'primary' | 'secondary' | 'secondary-blue' | 'tertiary' | 'link';
   text?: string;
   icon?: string;
   classes?: Record<string, string>;
@@ -275,11 +276,14 @@ export interface Steps extends Omit<Headline, 'classes'>, Widget {
 
 export interface Content extends Omit<Headline, 'classes'>, Widget {
   content?: string;
+  contentTwo?: string;
   image?: string | unknown;
+  imageCaption?: string;
   items?: Array<Item>;
   columns?: number;
   isReversed?: boolean;
   isAfterContent?: boolean;
+  placeListInColumnTwo?: boolean;
   callToAction?: CallToAction;
 }
 

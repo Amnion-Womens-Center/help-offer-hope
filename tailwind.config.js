@@ -8,10 +8,12 @@ export default {
     extend: {
       colors: {
         primary: 'var(--aw-color-primary)',
+        'primary-2': 'var(--aw-color-primary-2)',
         secondary: 'var(--aw-color-secondary)',
         accent: 'var(--aw-color-accent)',
+        tertiary: 'var(--aw-color-tertiary)',
         default: 'var(--aw-color-text-default)',
-        muted: 'var(--aw-color-text-muted)',
+        muted: 'var(--aw-color-muted)',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],

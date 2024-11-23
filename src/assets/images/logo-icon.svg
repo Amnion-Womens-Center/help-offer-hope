@@ -1,23 +1,7 @@
----
-// import { SITE } from 'astrowind:config';
-import { Image } from 'astro:assets';
-import logo from '../assets/images/help offer hope logo 2024.jpg';
----
-
-<!-- <span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
-</span> -->
-<Image
-  src={logo}
-  alt='Help Offer Hope'
-  width='120'
-/>
-<!-- <svg
+<svg
   width='100%'
   height='100%'
-  viewBox='0 0 1800 1800'
+  viewBox='0 400 1800 900'
   version='1.1'
   xmlns='http://www.w3.org/2000/svg'
   xmlns:xlink='http://www.w3.org/1999/xlink'
@@ -47,4 +31,4 @@ import logo from '../assets/images/help offer hope logo 2024.jpg';
       </g>
     </g>
   </g>
-</svg> -->
+</svg>

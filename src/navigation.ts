@@ -3,28 +3,26 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: 'About Amnion',
+      href: '/about',
+    },
+    {
+      text: 'Ways to Help',
+      href: '/help',
       links: [
         {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
+          text: 'Partner',
+          href: getPermalink('/help/partner'),
         },
         {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
-        },
-        {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app'),
-        },
-        {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
+          text: 'Promote',
+          href: getPermalink('/help/promote'),
         },
       ],
     },
     {
-      text: 'Pages',
+      text: 'Events',
+      href: '/events',
       links: [
         {
           text: 'Features (Anchor Link)',
@@ -57,7 +55,8 @@ export const headerData = {
       ],
     },
     {
-      text: 'Landing',
+      text: 'Resources',
+      href: '/resources',
       links: [
         {
           text: 'Lead Generation',
@@ -109,10 +108,6 @@ export const headerData = {
           href: getPermalink('astro', 'tag'),
         },
       ],
-    },
-    {
-      text: 'Widgets',
-      href: '#',
     },
   ],
   actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],

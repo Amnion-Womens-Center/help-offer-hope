@@ -4,15 +4,17 @@ import Features2 from '~/components/widgets/Features2.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
+import Button from '~/components/ui/Button.astro';
 
 import Stats from '~/components/widgets/Stats.astro';
 import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 import historyImage from '~/assets/images/Amnions-first-board-1991.webp';
+import ItemGrid from '~/components/ui/ItemGrid.astro';
 
 const metadata = {
-  title: 'About us',
+  title: 'Ways to Help',
 };
 ---
 
@@ -20,35 +22,113 @@ const metadata = {
   <!-- Hero Widget ******************* -->
 
   <Hero2
-    title='About Amnion'
+    title='Ways to Help'
     subtitle='Help Offer Hope is the donor development and fundraising arm of Amnion Women’s Center. Amnion is a 501(c)(3) non-profit organization which provides hope and help to those facing unplanned pregnancies.'
-    actions={[
-      { variant: 'primary', text: 'Learn more', href: '#learn-more', icon: 'tabler:square-rounded-arrow-right' },
-      { text: 'Visit client website', href: '#', variant: 'secondary-blue' },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1626&q=80',
-      alt: 'Children telling a story. Long-form Sales Landing Page demo',
-    }}
-  />
-  <!-- <Hero
-    tagline="About us"
-    image={{
-      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Caos Image',
-    }}
   >
-    <Fragment slot="title">
-      Elevate your online presence with our <br />
-      <span class="text-accent dark:text-white highlight"> Beautiful Website Templates</span>
+    <Fragment slot='image'>
+      <Features2
+        columns={3}
+        items={[
+          {
+            title: 'Prayer',
+            icon: 'mdi:hands-pray',
+            href: '#pray',
+          },
+          {
+            title: 'Partner',
+            icon: 'mdi:partnership',
+            href: '#partner',
+          },
+          {
+            title: 'Promote',
+            icon: 'mdi:bullhorn',
+            href: '#promote',
+          },
+          {
+            title: 'Participate',
+            icon: 'mdi:event',
+            href: '#participate',
+          },
+          {
+            title: 'Recycling',
+            icon: 'mdi:recycle',
+            href: '#recycle',
+          },
+          {
+            title: 'Volunteer',
+            icon: 'mdi:volunteer',
+            href: '#volunteer',
+          },
+        ]}
+      />
     </Fragment>
+  </Hero2>
 
-    <Fragment slot="subtitle">
-      Donec efficitur, ipsum quis congue luctus, mauris magna convallis mauris, eu auctor nisi lectus non augue. Donec
-      quis lorem non massa vulputate efficitur ac at turpis. Sed tincidunt ex a nunc convallis, et lobortis nisi tempus.
-      Suspendisse vitae nisi eget tortor luctus maximus sed non lectus.
+  <Content
+    id='pray'
+    isAfterContent={true}
+  >
+    <Fragment slot='content'>
+      <h3 class='heading text-4xl'>Pray</h3>
+      <p class='paragraph mb-5'>
+        James 5:16 declares, “The effective prayer of a righteous person can accomplish much.”
+      </p>
+      <p class='paragraph mb-5'>
+        Protecting human life involves an intense and escalating spiritual battle. Pray that the women and men facing
+        unplanned pregnancies will find their way to our center, especially those considering abortion. Pray for us to
+        have compassion and wisdom. Continually pray for Amnion’s clients, staff, and volunteers.
+      </p>
+      <p class='paragraph'>
+        Consider joining Amnion’s Prayer Team. You will receive special prayer requests and praise reports by email. No
+        personal client information will be shared.
+      </p>
     </Fragment>
-  </Hero> -->
+  </Content>
+
+  <Content
+    id='partner'
+    isReversed={true}
+    isAfterContent={true}
+  >
+    <Fragment slot='content'>
+      <h3 class='heading text-4xl'>Partner</h3>
+      <p class='paragraph mb-5'>
+        We rely on the financial partnership with individuals, families, churches, and businesses. You can help us
+        spread hope by giving a one-time donation or a monthly pledge, or by sponsoring one of our events.
+      </p>
+      <p class='paragraph mb-5'>
+        “I give thanks to my God for every remembrance of you, always praying with joy for all of you in my every
+        prayer, because of your partnership in the gospel from the first day until now” (Philippians 1:3-5).
+      </p>
+      <Button
+        href='/help/partner'
+        variant='primary'
+        >Become a partner</Button
+      >
+    </Fragment>
+  </Content>
+
+  <Content
+    id='promote'
+    isAfterContent={true}
+  >
+    <Fragment slot='content'>
+      <h3 class='heading text-4xl'>Promote</h3>
+      <p class='paragraph mb-5'>
+        Help Amnion spread hope by promoting our ministry within your family, church and circle of friends. Free
+        promotional resources are available on our Resources page.
+      </p>
+      <p class='paragraph mb-5'>
+        We are also looking for Amnion Ambassadors who will promote our abstinence program to local schools, youth
+        groups and homeschool groups.
+      </p>
+      <Button
+        href='/help/partner'
+        variant='primary'
+        >Become a promoter</Button
+      >
+    </Fragment>
+  </Content>
 
   <Content
     placeListInColumnTwo={true}

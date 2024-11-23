@@ -24,6 +24,9 @@ export interface ImageProps extends Omit<HTMLAttributes<'img'>, 'src'> {
   objectPosition?: string;
 
   format?: string;
+
+  // Custom
+  caption?: string;
 }
 
 export type ImagesOptimizer = (

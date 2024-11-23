@@ -45,6 +45,7 @@ export default defineConfig({
           'database',
         ],
       },
+      iconDir: 'src/assets/icons',
     }),
 
     ...whenExternalScripts(() =>

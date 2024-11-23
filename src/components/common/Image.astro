@@ -56,6 +56,14 @@ if (
   !image ? (
     <Fragment />
   ) : (
-    <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
+    <>
+      <img
+        src={image.src}
+        crossorigin='anonymous'
+        referrerpolicy='no-referrer'
+        {...image.attributes}
+      />
+      {props.caption && <p class='paragraph-small text-center'>{props.caption}</p>}
+    </>
   )
 }
