@@ -38,6 +38,7 @@ const {
   // actions = [],
   isSticky = false,
   isDark = false,
+  overlay = false,
   // isFullWidth = false,
   // showToggleTheme = false,
   // showRssFeed = false,
@@ -45,12 +46,14 @@ const {
 } = Astro.props;
 
 const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
+const classes = overlay ? 'absolute top-0 z-40' : '';
 ---
 
 <header
   class:list={[
-    { sticky: isSticky, absolute: !isSticky, dark: isDark },
+    classes,
     'top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out',
+    classes,
   ]}
   {...isSticky ? { 'data-aw-sticky-header': true } : {}}
   {...id ? { id } : {}}
@@ -72,7 +75,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
   >
     <div class:list={[{ 'mr-auto rtl:mr-0 rtl:ml-auto': position === 'right' }, 'flex justify-between']}>
       <a
-        class='flex items-center max-w-36 bg-white rounded-xl p-4'
+        class='flex items-center max-w-32 bg-white rounded-xl p-4'
         href={getHomePermalink()}
       >
         <Logo />
@@ -82,7 +85,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       </div>
     </div>
     <nav
-      class='items-center w-full md:w-auto hidden md:flex md:mx-5 text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center'
+      class='items-center w-full md:w-auto hidden md:flex text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:justify-self-center'
       aria-label='Main navigation'
     >
       <ul
@@ -96,7 +99,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                   {href ? (
                     <a
                       href={href}
-                      class='hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap'
+                      class='text-primary hover:text-primary dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap text-[1.1rem] uppercase'
                     >
                       {text}{' '}
                       <Icon
@@ -107,7 +110,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                   ) : (
                     <button
                       type='button'
-                      class='hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap'
+                      class='text-primary hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap text-[1.1rem] uppercase'
                     >
                       {text}{' '}
                       <Icon
@@ -121,7 +124,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                       <li>
                         <a
                           class:list={[
-                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
+                            'first:rounded-t last:rounded-b md:hover:bg-gray-100 text-primary hover:text-link dark:hover:text-white dark:hover:bg-gray-700 py-2 px-5 block whitespace-no-wrap',
                             { 'aw-link-active': href2 === currentPath },
                           ]}
                           href={href2}
@@ -135,7 +138,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               ) : (
                 <a
                   class:list={[
-                    'hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap',
+                    'text-primary hover:text-link dark:hover:text-white px-4 py-3 flex items-center whitespace-nowrap text-[1.1rem] uppercase',
                     { 'aw-link-active': href === currentPath },
                   ]}
                   href={href}
@@ -150,7 +153,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       <Button
         text='Donate'
         href='/'
-        class='ml-2 py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto'
+        class='ml-2 py-2.5 px-10 shadow-none font-medium text-base uppercase w-auto'
         variant='primary'
       />
     </nav>
