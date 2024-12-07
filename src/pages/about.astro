@@ -1,13 +1,8 @@
 ---
 import Content from '~/components/widgets/Content.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-import Features3 from '~/components/widgets/Features3.astro';
-import Hero from '~/components/widgets/Hero.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
-
-import Stats from '~/components/widgets/Stats.astro';
-import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import ItemGrid from '~/components/ui/ItemGrid.astro';
 
 import historyImage from '~/assets/images/Amnions-first-board-1991.webp';
 
@@ -32,29 +27,7 @@ const metadata = {
     }}
   />
 
-  <Content
-    placeListInColumnTwo={true}
-    items={[
-      {
-        title: 'The Glory of God',
-        description:
-          'The primary focus of Amnion’s ministry is to glorify God. Board members, staff and volunteers endeavor to model Christ in all aspect of their lives.',
-        icon: 'tabler:wand',
-      },
-      {
-        title: 'The Word of God',
-        description:
-          'The Bible is God’s inerrant Word and teaches that salvation is attained by faith alone, in Christ alone. God’s Word is sufficient for teaching, reproof, correction and for training in righteousness. God’s Word teaches that man is created in God’s image and likeness and for His glory; therefore, Amnion’s mission is to uphold the sanctity of human life.',
-        icon: 'tabler:settings',
-      },
-      {
-        title: 'The Hope of God',
-        description:
-          'Amnion will assist anyone facing an unplanned pregnancy, seeking post-abortion healing, and considering sexual purity issues. All counsel is given within a Biblical perspective, which is consistent with God’s design for holy living.',
-        icon: 'tabler:presentation',
-      },
-    ]}
-  >
+  <Content isDark={true}>
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>Mission and Vision</h3>
       <p class='paragraph mb-5'>
@@ -67,8 +40,39 @@ const metadata = {
         by using God’s word to show them the love of Christ, and by providing care and support to women and their families.
       </p>
     </Fragment>
-    <Fragment slot='contentTwo'>
+    <Fragment slot='image'>
       <h3 class='heading text-2xl'>We value:</h3>
+      <ItemGrid
+        items={[
+          {
+            title: 'The Glory of God',
+            description:
+              'The primary focus of Amnion’s ministry is to glorify God. Board members, staff and volunteers endeavor to model Christ in all aspect of their lives.',
+            icon: 'tabler:wand',
+          },
+          {
+            title: 'The Word of God',
+            description:
+              'The Bible is God’s inerrant Word and teaches that salvation is attained by faith alone, in Christ alone. God’s Word is sufficient for teaching, reproof, correction and for training in righteousness. God’s Word teaches that man is created in God’s image and likeness and for His glory; therefore, Amnion’s mission is to uphold the sanctity of human life.',
+            icon: 'tabler:settings',
+          },
+          {
+            title: 'The Hope of God',
+            description:
+              'Amnion will assist anyone facing an unplanned pregnancy, seeking post-abortion healing, and considering sexual purity issues. All counsel is given within a Biblical perspective, which is consistent with God’s design for holy living.',
+            icon: 'tabler:presentation',
+          },
+        ]}
+        defaultIcon='tabler:check'
+        classes={{
+          container: `gap-y-4 md:gap-y-8`,
+          panel: 'max-w-none',
+          title: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+          description: 'text-primary dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+          icon: 'flex h-7 w-7 items-center justify-center rounded-full bg-primary-2 text-gray-50 p-1',
+          action: 'text-lg font-medium leading-6 dark:text-white ml-2 rtl:ml-0 rtl:mr-2',
+        }}
+      />
     </Fragment>
   </Content>
 
@@ -98,7 +102,9 @@ const metadata = {
         <li>Post-Abortion Healing</li>
       </ul>
     </Fragment>
-    <Fragment slot='image'> </Fragment>
+    <Fragment slot='bg'>
+      <div class='absolute inset-0 bg-muted'></div>
+    </Fragment>
   </Content>
 
   <Content

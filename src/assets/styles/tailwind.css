@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  a {
+    @apply font-bold text-secondary hover:underline;
+  }
+}
+
 @layer utilities {
   .bg-page {
     background-color: var(--aw-color-bg-page);
@@ -46,7 +52,7 @@
   }
 
   .paragraph-base {
-    @apply text-primary font-light leading-loose;
+    @apply text-primary dark:text-white font-light leading-loose;
   }
 
   .paragraph {

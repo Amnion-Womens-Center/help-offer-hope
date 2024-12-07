@@ -1,0 +1,70 @@
+---
+import Content from '~/components/widgets/Content.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Headline from '~/components/blog/Headline.astro';
+
+import historyImage from '~/assets/images/Amnions-first-board-1991.webp';
+import Button from '~/components/ui/Button.astro';
+
+const metadata = {
+  title: 'Printed and Downloadable Resources',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Content classes={{ container: '!pt-8 !pb-0' }}>
+    <Fragment slot='content'>
+      <h1 class='heading text-4xl md:text-5xl leading-tighter'>Events</h1>
+      <Button variant='primary'>Register for the 2025 Walk for Life</Button>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>Upcoming</h2>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>Publications</h2>
+      <p class='paragraph'>
+        All our publications are free. <a href='mail:'>Email Michele</a> or call us at <a href='tel:952-898-4350'
+          >952-898-4350</a
+        > to place your order.
+      </p>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>Downloads</h2>
+      <p class='paragraph'>Downloadable resources for use on social media, slide shows, and other digital promtions.</p>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>Featured Videos</h2>
+      <p class='paragraph'>You can find more videos on our <a>media channel</a>.</p>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>More pro-life resources</h2>
+      <div class='mt-8 flex flex-wrap gap-2'>
+        {
+          ['Equals Rights Institute', 'Passion Life', 'Making Life Disciples', "Heritage House '76"].map((items) => (
+            <div class='flex-grow flex-shrink basis-[400px] bg-primary text-white font-bold flex items-center justify-center min-h-24 rounded-md'>
+              <p>{items}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Fragment>
+  </Content>
+</Layout>

@@ -1,0 +1,115 @@
+---
+import Content from '~/components/widgets/Content.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Button from '~/components/ui/Button.astro';
+import { getResources } from '~/utils/sanity';
+
+const metadata = {
+  title: 'Printed and Downloadable Resources',
+};
+
+const resources = getResources();
+const printResources = resources.filter((resource) => resource.type == 'print');
+const digitalResources = resources.filter((resource) => resource.type == 'download');
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Content classes={{ container: '!pt-8 !pb-0' }}>
+    <Fragment slot='content'>
+      <h1 class='heading text-4xl md:text-5xl leading-tighter'>Printed and Downloadable Resources</h1>
+      <Button variant='primary'>View our media channel</Button>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <p class='text-secondary font-bold mb-2'>Featured</p>
+      <h2 class='heading text-4xl'>Sanctity of Human Life Sunday</h2>
+      <p class='paragraph'>
+        These bulletin inserts and posters are available for your congregation at no cost to you. Call us at
+        952-898-4350.
+      </p>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>Publications</h2>
+      <p class='paragraph'>
+        All our publications are free. <a href='mail:'>Email Michele</a> or call us at <a href='tel:952-898-4350'
+          >952-898-4350</a
+        > to place your order.
+      </p>
+      <!-- Start Resources Grid -->
+      <div class='mt-4 grid grid-cols-3'>
+        {
+          printResources.map((resource) => (
+            <div class='bg-white p-3 rounded-md'>
+              <div class='w-full aspect-video bg-slate-500 rounded-md' />
+              <h3 class='my-4 text-primary text-lg'>{resource.title}</h3>
+              <Button variant='primary'>Preview</Button>
+            </div>
+          ))
+        }
+      </div>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>Digital</h2>
+      <p class='paragraph'>Downloadable resources for use on social media, slide shows, and other digital promtions.</p>
+      <!-- Start Resources Grid -->
+      <div class='mt-4 grid grid-cols-3'>
+        {
+          digitalResources.map((resource) => (
+            <div class='bg-white p-3 rounded-md'>
+              <img
+                class='w-full aspect-video bg-slate-500 rounded-md'
+                src='https://images.unsplash.com/photo-1732861448032-fc1b14365bff?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+              />
+              <h3 class='mt-4 text-primary text-lg'>{resource.title}</h3>
+              <p class='paragraph-small mb-4'>{resource.description}</p>
+              <Button
+                variant='secondary'
+                class='ml-2 px-3 py-2'
+              >
+                Preview
+              </Button>
+              <Button
+                variant='primary'
+                class='px-3 py-2'
+              >
+                Download
+              </Button>
+            </div>
+          ))
+        }
+      </div>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>Featured Videos</h2>
+      <p class='paragraph'>You can find more videos on our <a>media channel</a>.</p>
+    </Fragment>
+  </Content>
+
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>More pro-life resources</h2>
+      <div class='mt-8 flex flex-wrap gap-2'>
+        {
+          ['Equals Rights Institute', 'Passion Life', 'Making Life Disciples', "Heritage House '76"].map((items) => (
+            <div class='flex-grow flex-shrink basis-[400px] bg-primary text-white font-bold flex items-center justify-center min-h-24 rounded-md'>
+              <p>{items}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Fragment>
+  </Content>
+</Layout>

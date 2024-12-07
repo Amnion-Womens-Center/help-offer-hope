@@ -265,7 +265,7 @@ export interface Faqs extends Omit<Headline, 'classes'>, Widget {
 
 export interface Steps extends Omit<Headline, 'classes'>, Widget {
   items: Array<{
-    title: string;
+    title?: string;
     description?: string;
     icon?: string;
     classes?: Record<string, string>;
@@ -277,14 +277,12 @@ export interface Steps extends Omit<Headline, 'classes'>, Widget {
 
 export interface Content extends Omit<Headline, 'classes'>, Widget {
   content?: string;
-  contentTwo?: string;
   image?: string | unknown;
   imageCaption?: string;
   items?: Array<Item>;
   columns?: number;
   isReversed?: boolean;
   isAfterContent?: boolean;
-  placeListInColumnTwo?: boolean;
   callToAction?: CallToAction;
 }
 

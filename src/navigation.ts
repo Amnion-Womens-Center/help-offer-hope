@@ -6,11 +6,25 @@ export const headerData = {
     {
       text: 'About Amnion',
       href: '/about',
+      links: [
+        {
+          text: 'Center Tours',
+          href: getPermalink('/about/tours'),
+        },
+        {
+          text: 'Contact Us',
+          href: getPermalink('/contact'),
+        },
+      ],
     },
     {
       text: 'Ways to Help',
       href: '/help',
       links: [
+        {
+          text: 'Bottles for Life',
+          href: getPermalink('/help/bottles-for-life'),
+        },
         {
           text: 'Partner',
           href: getPermalink('/help/partner'),
@@ -26,39 +40,24 @@ export const headerData = {
       href: '/events',
       links: [
         {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
+          text: 'Gala',
+          href: getPermalink('/events/gala'),
         },
         {
-          text: 'Services',
-          href: getPermalink('/services'),
-        },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
-        },
-        {
-          text: 'About us',
-          href: getPermalink('/about'),
-        },
-        {
-          text: 'Contact',
-          href: getPermalink('/contact'),
-        },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
+          text: 'Walk for Life',
+          href: getPermalink('/events/walk-for-life'),
         },
       ],
     },
 
     {
-      text: 'Blog',
+      text: 'Resources',
+      href: '/resources',
       links: [
+        {
+          text: 'Services',
+          href: getPermalink('/services'),
+        },
         {
           text: 'Blog List',
           href: getBlogPermalink(),
