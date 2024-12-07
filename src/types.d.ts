@@ -287,3 +287,27 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+
+export interface Resource {
+  href?: string;
+  title?: string;
+  type?: string;
+  description?: string;
+  icon?: string;
+  classes?: Record<string, string>;
+  callToAction?: CallToAction;
+  images: Array<Image>;
+}
+
+export interface Resources extends Omit<Headline, 'classes'>, Widget {
+  image?: string | unknown;
+  video?: Video;
+  items?: Array<Resource>;
+  columns?: number;
+  defaultIcon?: string;
+  callToAction1?: CallToAction;
+  callToAction2?: CallToAction;
+  isReversed?: boolean;
+  isBeforeContent?: boolean;
+  isAfterContent?: boolean;
+}

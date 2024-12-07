@@ -15,6 +15,9 @@ import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 
+import sanity from '@sanity/astro';
+import react from '@astrojs/react';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const hasExternalScripts = false;
@@ -47,13 +50,11 @@ export default defineConfig({
       },
       iconDir: 'src/assets/icons',
     }),
-
     ...whenExternalScripts(() =>
       partytown({
         config: { forward: ['dataLayer.push'] },
       })
     ),
-
     compress({
       CSS: true,
       HTML: {
@@ -66,10 +67,15 @@ export default defineConfig({
       SVG: false,
       Logger: 1,
     }),
-
     astrowind({
       config: './src/config.yaml',
     }),
+    sanity({
+      projectId: 'ksajlpod',
+      dataset: 'production',
+      useCdn: false,
+    }),
+    react(),
   ],
 
   image: {

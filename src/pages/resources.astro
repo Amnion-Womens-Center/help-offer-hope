@@ -2,13 +2,16 @@
 import Content from '~/components/widgets/Content.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import Button from '~/components/ui/Button.astro';
+import ResourcesWidget from '~/components/widgets/Resources.astro';
+
 import { getResources } from '~/utils/sanity';
 
 const metadata = {
   title: 'Printed and Downloadable Resources',
 };
 
-const resources = getResources();
+const resources = await getResources();
+console.log(resources[0].images);
 const printResources = resources.filter((resource) => resource.type == 'print');
 const digitalResources = resources.filter((resource) => resource.type == 'download');
 ---
@@ -34,62 +37,19 @@ const digitalResources = resources.filter((resource) => resource.type == 'downlo
     </Fragment>
   </Content>
 
-  <Content isAfterContent={true}>
-    <Fragment slot='content'>
-      <h2 class='heading text-4xl'>Publications</h2>
-      <p class='paragraph'>
-        All our publications are free. <a href='mail:'>Email Michele</a> or call us at <a href='tel:952-898-4350'
-          >952-898-4350</a
-        > to place your order.
-      </p>
-      <!-- Start Resources Grid -->
-      <div class='mt-4 grid grid-cols-3'>
-        {
-          printResources.map((resource) => (
-            <div class='bg-white p-3 rounded-md'>
-              <div class='w-full aspect-video bg-slate-500 rounded-md' />
-              <h3 class='my-4 text-primary text-lg'>{resource.title}</h3>
-              <Button variant='primary'>Preview</Button>
-            </div>
-          ))
-        }
-      </div>
-    </Fragment>
-  </Content>
+  <ResourcesWidget
+    isAfterContent={true}
+    title='Publications'
+    subtitle="All our publications are free. <a href='mail:'>Email Michele</a> or call us at <a href='tel:952-898-4350'>952-898-4350</a> to place your order."
+    items={printResources}
+  />
 
-  <Content isAfterContent={true}>
-    <Fragment slot='content'>
-      <h2 class='heading text-4xl'>Digital</h2>
-      <p class='paragraph'>Downloadable resources for use on social media, slide shows, and other digital promtions.</p>
-      <!-- Start Resources Grid -->
-      <div class='mt-4 grid grid-cols-3'>
-        {
-          digitalResources.map((resource) => (
-            <div class='bg-white p-3 rounded-md'>
-              <img
-                class='w-full aspect-video bg-slate-500 rounded-md'
-                src='https://images.unsplash.com/photo-1732861448032-fc1b14365bff?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-              />
-              <h3 class='mt-4 text-primary text-lg'>{resource.title}</h3>
-              <p class='paragraph-small mb-4'>{resource.description}</p>
-              <Button
-                variant='secondary'
-                class='ml-2 px-3 py-2'
-              >
-                Preview
-              </Button>
-              <Button
-                variant='primary'
-                class='px-3 py-2'
-              >
-                Download
-              </Button>
-            </div>
-          ))
-        }
-      </div>
-    </Fragment>
-  </Content>
+  <ResourcesWidget
+    isAfterContent={true}
+    title='Digital'
+    subtitle='Downloadable resources for use on social media, slide shows, and other digital promtions.'
+    items={digitalResources}
+  />
 
   <Content isAfterContent={true}>
     <Fragment slot='content'>

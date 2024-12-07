@@ -1,17 +1,22 @@
-export const getResources = () => {
-  // Temporary static resources
-  return [
-    {
-      title: 'Resource 1',
-      type: 'print',
-      images: ['https://unsplash.com/photos/a-group-of-rocks-in-the-middle-of-a-forest-uFH7yP-hy44'],
-      description: 'This is the description.',
-    },
-    {
-      title: 'Resource 2',
-      type: 'download',
-      images: [],
-      description: 'This is another description.',
-    },
-  ];
+import { sanityClient } from 'sanity:client';
+
+export const getResources = async () => {
+  const resources = await sanityClient.fetch(`*[_type == "resource"] | order(title desc) {
+    title,
+    type,
+    images[] {
+      'src': asset->url
+    }
+  }`);
+
+  return resources;
+};
+
+export const getEmployees = async () => {
+  return await sanityClient.fetch(`*[_type == "employee"] | order(name desc) {
+    name,
+    role,
+    department,
+    'headshot': headshot.asset->url,
+  }`);
 };

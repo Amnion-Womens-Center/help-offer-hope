@@ -3,8 +3,13 @@ import Content from '~/components/widgets/Content.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import ItemGrid from '~/components/ui/ItemGrid.astro';
-
+import { getEmployees } from '~/utils/sanity';
 import historyImage from '~/assets/images/Amnions-first-board-1991.webp';
+
+const employees = await getEmployees();
+const donorSupportEmployees = employees.filter((emp) => emp.department == 'donor-support');
+console.log(donorSupportEmployees[0]);
+const patientClientEmployees = employees.filter((emp) => emp.department == 'patient-client');
 
 const metadata = {
   title: 'About us',
@@ -102,9 +107,6 @@ const metadata = {
         <li>Post-Abortion Healing</li>
       </ul>
     </Fragment>
-    <Fragment slot='bg'>
-      <div class='absolute inset-0 bg-muted'></div>
-    </Fragment>
   </Content>
 
   <Content
@@ -129,6 +131,35 @@ const metadata = {
         Psalm 102:18 declares, “Let this be written for a future generation, that a people not yet created may praise
         the Lord.”
       </p>
+    </Fragment>
+
+    <Fragment slot='bg'>
+      <div class='absolute inset-0 bg-muted'></div>
+    </Fragment>
+  </Content>
+
+  <Content>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl mb-8'>Our Team</h2>
+      <div>
+        <h3 class='heading font-semibold text-2xl'>Donor and Support Services</h3>
+        <div class='flex flex-wrap gap-4'>
+          {
+            donorSupportEmployees.map((emp) => (
+              <div class='bg-white rounded-lg basis-60 text-center'>
+                <img
+                  class='width-full rounded-t-lg'
+                  src={emp.headshot}
+                />
+                <div class='p-4'>
+                  <h4 class='heading font-bold mb-1'>{emp.name}</h4>
+                  <h5 class='paragraph'>{emp.role}</h5>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
     </Fragment>
   </Content>
 </Layout>
