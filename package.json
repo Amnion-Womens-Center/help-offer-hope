@@ -33,7 +33,7 @@
     "@sanity/client": "^6.24.1",
     "@sanity/visual-editing": "^2.10.5",
     "@types/react": "^18.3.14",
-    "@types/react-dom": "^18.0.0",
+    "@types/react-dom": "^18.0.6",
     "astro": "^4.16.2",
     "astro-embed": "^0.7.4",
     "astro-icon": "^1.1.1",
