@@ -4,6 +4,8 @@ import Features2 from '~/components/widgets/Features2.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Contact from '~/components/widgets/Contact.astro';
 import Button from '~/components/ui/Button.astro';
+import BottlesImage from '~/assets/images/babybottles3.jpg';
+import RecyclingImage from '~/assets/images/recycling.jpg';
 
 import Layout from '~/layouts/PageLayout.astro';
 
@@ -15,7 +17,58 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero2
+  <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h1
+        class='text-center heading text-5xl intersect-once motion-safe:md:intersect:animate-fade motion-safe:md:opacity-0 intersect-quarter'
+      >
+        Ways to Help
+      </h1>
+      <Features2
+        columns={4}
+        classes={{ container: '!pb-0' }}
+        items={[
+          {
+            title: 'Pray',
+            icon: 'mdi:hands-pray',
+            href: '#pray',
+          },
+          {
+            title: 'Bottles for Life',
+            icon: 'lucide-lab:bottle-baby',
+            href: '#bottles',
+          },
+          {
+            title: 'Partner',
+            icon: 'mdi:partnership',
+            href: '#partner',
+          },
+          {
+            title: 'Promote',
+            icon: 'mdi:bullhorn',
+            href: '#promote',
+          },
+          {
+            title: 'Attend an Event',
+            icon: 'mdi:event',
+            href: '#participate',
+          },
+          {
+            title: 'Recycling',
+            icon: 'mdi:recycle',
+            href: '#recycle',
+          },
+          {
+            title: 'Volunteer',
+            icon: 'mdi:volunteer',
+            href: '#volunteer',
+          },
+        ]}
+      />
+    </Fragment>
+  </Content>
+
+  <!-- <Hero2
     title='Ways to Help'
     subtitle='Help Offer Hope is the donor development and fundraising arm of Amnion Women’s Center. Amnion is a 501(c)(3) non-profit organization which provides hope and help to those facing unplanned pregnancies.'
   >
@@ -23,6 +76,11 @@ const metadata = {
       <Features2
         columns={3}
         items={[
+          {
+            title: 'Bottles for Life',
+            icon: 'mdi:hands-pray',
+            href: '#bottles',
+          },
           {
             title: 'Prayer',
             icon: 'mdi:hands-pray',
@@ -56,11 +114,11 @@ const metadata = {
         ]}
       />
     </Fragment>
-  </Hero2>
+  </Hero2> -->
 
   <Content
     id='pray'
-    isAfterContent={true}
+    isDark={true}
   >
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>Pray</h3>
@@ -79,10 +137,30 @@ const metadata = {
     </Fragment>
   </Content>
 
+  <Content id='bottles'>
+    <Fragment slot='content'>
+      <h3 class='heading text-4xl'>Bottles for Life</h3>
+      <p class='paragraph mb-5'>
+        The Bottles For Life Campaign is a unique and easy way to involve members of your congregation to help support
+        Amnion’s ministry by filling a baby bottle with cash, checks, or coins.
+      </p>
+      <Button
+        variant='primary'
+        href='/help/bottles-for-life'
+        >Learn more</Button
+      >
+    </Fragment>
+    <Fragment slot='image'>
+      <img
+        class='w-full h-auto rounded-lg'
+        src={BottlesImage.src}
+      />
+    </Fragment>
+  </Content>
+
   <Content
     id='partner'
     isReversed={true}
-    isAfterContent={true}
   >
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>Partner</h3>
@@ -100,11 +178,14 @@ const metadata = {
         >Become a partner</Button
       >
     </Fragment>
+    <Fragment slot='bg'>
+      <div class='absolute inset-0 bg-muted'></div>
+    </Fragment>
   </Content>
 
   <Content
     id='promote'
-    isAfterContent={true}
+    isDark={true}
   >
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>Promote</h3>
@@ -124,17 +205,13 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <Content
-    id='participate'
-    isAfterContent={true}
-  >
+  <Content id='participate'>
     <Fragment slot='content'>
-      <h3 class='heading text-4xl'>Participate</h3>
+      <h3 class='heading text-4xl'>Attend an Event</h3>
       <p class='paragraph mb-5'>
         Participate in one or more of Amnion’s annual events and enlist family and friends to join you.
       </p>
       <ul class='list-disc list-inside paragraph-small mb-5'>
-        <li>Bottles for Life – churches can do a bottle drive anytime</li>
         <li>Sanctity of Human Life Sunday in January</li>
         <li>Walk for Life – the first Saturday after Memorial Day</li>
         <li>Gala and Auction – late October</li>
@@ -147,10 +224,7 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <Content
-    id='recycle'
-    isAfterContent={true}
-  >
+  <Content id='recycle'>
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>Recycling for Life</h3>
       <p class='paragraph mb-5'>
@@ -159,12 +233,20 @@ const metadata = {
         Since Dave started this project, he’s raised over $38,000 for Amnion! Call 952-898-4350 for details.
       </p>
     </Fragment>
+    <Fragment slot='image'>
+      <img
+        class='w-full h-auto rounded-lg'
+        src={RecyclingImage.src}
+      />
+    </Fragment>
+    <Fragment slot='bg'>
+      <div class='absolute inset-0 bg-muted'></div>
+    </Fragment>
   </Content>
 
   <Contact
     id='volunteer'
     title='Volunteer'
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
     inputs={[
       {
         type: 'text',
