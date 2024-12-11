@@ -52,18 +52,15 @@
   }
 
   .paragraph-base {
-    @apply text-primary dark:text-white font-light leading-loose;
+    @apply text-primary dark:text-white font-light leading-loose [&>p]:mb-5 [&>ul]:list-disc [&>ul]:list-inside;
   }
 
   .paragraph {
-    @apply paragraph-base text-lg tracking-wide leading-8;
+    @apply paragraph-base text-lg tracking-wide leading-8 [&>ul]:paragraph-small;
   }
 
   .paragraph-small {
     @apply paragraph-base tracking-tight;
-  }
-
-  .container {
   }
 }
 

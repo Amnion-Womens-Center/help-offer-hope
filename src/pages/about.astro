@@ -3,13 +3,15 @@ import Content from '~/components/widgets/Content.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import ItemGrid from '~/components/ui/ItemGrid.astro';
-import { getEmployees } from '~/utils/sanity';
-import historyImage from '~/assets/images/Amnions-first-board-1991.webp';
+import { getAboutContent, getEmployees } from '~/utils/sanity';
+import { toHTML } from '@portabletext/to-html';
+import { PortableText } from 'astro-portabletext';
 
 const employees = await getEmployees();
 const donorSupportEmployees = employees.filter((emp) => emp.department == 'donor-support');
-console.log(donorSupportEmployees[0]);
 const patientClientEmployees = employees.filter((emp) => emp.department == 'patient-client');
+const aboutContent = await getAboutContent();
+console.log(aboutContent.missionList);
 
 const metadata = {
   title: 'About us',
@@ -20,6 +22,19 @@ const metadata = {
   <!-- Hero Widget ******************* -->
 
   <Hero2
+    title={aboutContent.heroHeading}
+    subtitle={toHTML(aboutContent.heroContent)}
+    actions={[
+      { variant: 'primary', text: 'Learn more', href: '#learn-more', icon: 'tabler:square-rounded-arrow-right' },
+      { text: 'Visit client website', href: '#', variant: 'secondary-blue' },
+    ]}
+    image={{
+      src: aboutContent.heroImage.src,
+      alt: aboutContent.heroImage.alt,
+    }}
+  />
+
+  <!-- <Hero2
     title='About Amnion'
     subtitle='Help Offer Hope is the donor development and fundraising arm of Amnion Women’s Center. Amnion is a 501(c)(3) non-profit organization which provides hope and help to those facing unplanned pregnancies.'
     actions={[
@@ -30,43 +45,26 @@ const metadata = {
       src: 'https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1626&q=80',
       alt: 'Children telling a story. Long-form Sales Landing Page demo',
     }}
-  />
+  /> -->
 
   <Content isDark={true}>
     <Fragment slot='content'>
-      <h3 class='heading text-4xl'>Mission and Vision</h3>
-      <p class='paragraph mb-5'>
-        Amnion’s <strong>mission</strong> is to share the gospel of Jesus Christ and to protect and advocate for the sanctity
-        of all human life, born and unborn, through the provision of abortion alternative services that empower mothers to
-        choose life.
-      </p>
-      <p class='paragraph'>
-        The <strong>vision</strong> of Amnion is to stop abortion by educating all people on the true value of a human life,
-        by using God’s word to show them the love of Christ, and by providing care and support to women and their families.
-      </p>
+      <h3 class='heading text-4xl'>{aboutContent.missionHeading}</h3>
+      <div class='paragraph'>
+        <PortableText value={aboutContent.missionContent} />
+      </div>
     </Fragment>
     <Fragment slot='image'>
-      <h3 class='heading text-2xl'>We value:</h3>
+      <h3 class='heading text-2xl'>{aboutContent.missionSubheading}</h3>
       <ItemGrid
         items={[
-          {
-            title: 'The Glory of God',
-            description:
-              'The primary focus of Amnion’s ministry is to glorify God. Board members, staff and volunteers endeavor to model Christ in all aspect of their lives.',
-            icon: 'tabler:wand',
-          },
-          {
-            title: 'The Word of God',
-            description:
-              'The Bible is God’s inerrant Word and teaches that salvation is attained by faith alone, in Christ alone. God’s Word is sufficient for teaching, reproof, correction and for training in righteousness. God’s Word teaches that man is created in God’s image and likeness and for His glory; therefore, Amnion’s mission is to uphold the sanctity of human life.',
-            icon: 'tabler:settings',
-          },
-          {
-            title: 'The Hope of God',
-            description:
-              'Amnion will assist anyone facing an unplanned pregnancy, seeking post-abortion healing, and considering sexual purity issues. All counsel is given within a Biblical perspective, which is consistent with God’s design for holy living.',
-            icon: 'tabler:presentation',
-          },
+          ...aboutContent.missionList.map((item) => {
+            return {
+              title: item.heading,
+              description: toHTML(item.content),
+              icon: item.icon,
+            };
+          }),
         ]}
         defaultIcon='tabler:check'
         classes={{
@@ -84,55 +82,28 @@ const metadata = {
   <Content
     isReversed={true}
     image={{
-      src: 'https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1626&q=80',
-      alt: 'image',
+      src: aboutContent.servicesImage.src,
+      alt: aboutContent.servicesImage.alt,
     }}
   >
     <Fragment slot='content'>
-      <h3 class='heading text-4xl'>Our services</h3>
-      <p class='paragraph mb-5'>
-        Amnion provides free and confidential pregnancy and post-abortion services to those in need. We do not perform
-        or refer for abortions.
-      </p>
-      <ul class='list-disc list-inside paragraph-small'>
-        <li>Pregnancy Tests</li>
-        <li>Ultrasounds</li>
-        <li>Abortion Pill Rescue/Reversal</li>
-        <li>Prenatal Education</li>
-        <li>Abortion Risk Education</li>
-        <li>Relationship Classes</li>
-        <li>Fatherhood Education</li>
-        <li>Evangelism &amp; Bible Studies</li>
-        <li>Maternity &amp; Baby Supplies</li>
-        <li>Post-Abortion Healing</li>
-      </ul>
+      <h3 class='heading text-4xl'>{aboutContent.servicesHeading}</h3>
+      <div class='paragraph'>
+        <PortableText value={aboutContent.servicesContent} />
+      </div>
     </Fragment>
   </Content>
 
   <Content
-    image={{ src: historyImage, alt: 'history' }}
-    imageCaption='Amnion’s first board with founder Janis Lamont (in the dark coat).'
+    image={{ src: aboutContent.historyImage.src, alt: aboutContent.historyImage.alt }}
+    imageCaption={aboutContent.historyImage.caption}
   >
     <Fragment slot='content'>
-      <h3 class='heading text-4xl'>Our history</h3>
-      <p class='paragraph mb-5'>
-        Since 1991 Amnion Women’s Center has provided Christ-centered compassionate and free services to women and men
-        who are facing an unplanned pregnancy in their lives.
-      </p>
-      <p class='paragraph mb-5'>
-        The word amnion is the Greek term for “little lamb” named because lambs are born in a protective sac called the
-        amnion. Amnion Pregnancy Center provides a protective, safe haven for the expectant mom, dad, and baby
-        throughout their unplanned pregnancy and after the birth of the baby.
-      </p>
-      <p class='paragraph mb-5'>
-        Amnion is affiliated with Care Net who supports the largest network of pregnancy centers in North America.
-      </p>
-      <p class='paragraph mb-5'>
-        Psalm 102:18 declares, “Let this be written for a future generation, that a people not yet created may praise
-        the Lord.”
-      </p>
+      <h3 class='heading text-4xl'>{aboutContent.historyHeading}</h3>
+      <div class='paragraph'>
+        <PortableText value={aboutContent.historyContent} />
+      </div>
     </Fragment>
-
     <Fragment slot='bg'>
       <div class='absolute inset-0 bg-muted'></div>
     </Fragment>

@@ -47,6 +47,10 @@ export const headerData = {
           text: 'Walk for Life',
           href: getPermalink('/events/walk-for-life'),
         },
+        {
+          text: 'Gala 2024',
+          href: getPermalink('/events/gala-2024'),
+        },
       ],
     },
 
