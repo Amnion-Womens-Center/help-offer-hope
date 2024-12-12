@@ -49,7 +49,7 @@ export const headerData = {
         },
         {
           text: 'Gala 2024',
-          href: getPermalink('/events/gala-2024'),
+          href: getPermalink('/events/gala/gala-2024'),
         },
       ],
     },
