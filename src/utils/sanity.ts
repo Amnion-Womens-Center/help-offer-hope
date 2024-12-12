@@ -56,11 +56,31 @@ export const getAboutContent = async () => {
   return data[0];
 };
 
-export const getEvents = async () => {
-  return [
-    {
-      title: 'Gala 2024',
-      description: '',
+export const getEventSlugs = async () => {
+  return await sanityClient.fetch(`*[_type == "event" && defined(slug)] | order(name desc) {
+    "slug": slug.current
+  }`);
+};
+
+export const getEventBySlug = async (slug) => {
+  console.log(slug);
+  return await sanityClient.fetch(
+    `*[_type == "event" && slug.current == $slug][0] {
+    ...,
+    "slug": slug.current,
+    "series": series->,
+    "image": image.asset->url,
+    "resources": resources->resources[]->{
+      ...,
+      "images": images[] {
+        'src': asset->url
+      }
     },
-  ];
+    "sponsors": sponsors[]->{
+      ...,
+      "image": image.asset->url
+    }
+  }`,
+    { slug }
+  );
 };

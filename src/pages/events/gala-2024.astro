@@ -8,6 +8,7 @@ import Brands from '~/components/widgets/Brands.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import Button from '~/components/ui/Button.astro';
 import ResourcesWidget from '~/components/widgets/Resources.astro';
+import BottlesImage from '~/assets/images/babybottles3.jpg';
 
 const metadata = {
   title: 'Lead Generation Landing Page Demo',
@@ -36,7 +37,7 @@ const metadata = {
         ]}
       />
       <Button
-        class='my-8 text-xl'
+        class='mt-12 mb-8 text-xl'
         variant='primary'
         >Register now</Button
       >
@@ -45,16 +46,20 @@ const metadata = {
 
   <Content id='bottles'>
     <Fragment slot='content'>
-      <p class='paragraph mb-5 max-w-[1000px] mx-auto text-center text-xl leading-8'>
+      <p class='paragraph mb-5 max-w-[1200px] mx-auto text-center text-2xl leading-relaxed'>
         The Bottles For Life Campaign is a unique and easy way to involve members of your congregation to help support
         Amnion’s ministry by filling a baby bottle with cash, checks, or coins.
       </p>
       <Stats
-        classes={{ container: '!pb-0' }}
+        classes={{ container: '!pt-8 !pb-0' }}
         stats={[
           { title: 'Goal', amount: '$275,000' },
           // { title: 'Actual', amount: '$292,000' },
         ]}
+      />
+      <img
+        class='w-full mx-auto mt-28 mb-8 h-auto rounded-lg'
+        src={BottlesImage.src}
       />
     </Fragment>
     <Fragment slot='bg'>
@@ -62,12 +67,7 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <ResourcesWidget
-    title='Promotional Resources'
-    subtitle="All our publications are free. <a href='mail:'>Email Michele</a> or call us at <a href='tel:952-898-4350'>952-898-4350</a> to place your order."
-  />
-
-  <Content isDark={true}>
+  <Content>
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>Additional Info</h3>
       <p class='paragraph mb-5'>
@@ -76,6 +76,12 @@ const metadata = {
       </p>
     </Fragment>
   </Content>
+
+  <ResourcesWidget
+    isDark={true}
+    title='Promotional Resources'
+    subtitle="All our publications are free. <a href='mail:'>Email Michele</a> or call us at <a href='tel:952-898-4350'>952-898-4350</a> to place your order."
+  />
 
   <Brands />
 </Layout>

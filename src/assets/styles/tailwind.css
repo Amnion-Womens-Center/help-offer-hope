@@ -4,7 +4,7 @@
 
 @layer base {
   a {
-    @apply font-bold text-secondary hover:underline;
+    @apply font-bold text-secondary hover:underline dark:text-primary-2;
   }
 }
 

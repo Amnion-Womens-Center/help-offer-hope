@@ -1,0 +1,95 @@
+---
+import Content from '~/components/widgets/Content.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+
+const metadata = {
+  title: 'Bottles for Life',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+  <Hero2
+    title='Bottles for Life'
+    subtitle='The Bottles For Life Campaign is a unique and easy way to involve members of your congregation to help support Amnion’s ministry by filling a baby bottle with cash, checks, or coins.'
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Schedule a Bottles for Life campaign',
+        href: 'mailto:',
+        target: '_blank',
+        icon: 'tabler:mail-filled',
+      },
+    ]}
+  >
+    <Fragment slot='image'>
+      <iframe
+        class='w-full max-w-4xl h-auto aspect-video mx-auto'
+        src='https://adilo.bigcommand.com/watch/R258b8lA'
+      ></iframe>
+    </Fragment>
+  </Hero2>
+
+  <Content
+    title='How to participate'
+    isDark={true}
+    classes={{ title: ' !text-4xl' }}
+  >
+    <Fragment slot='content'>
+      <Steps2
+        classes={{ container: 'max-w-4xl mx-auto !py-0' }}
+        items={[
+          {
+            description:
+              'Select a month to host the campaign. Many churches participate in January in conjunction with Sanctity of Human Life Sunday, but any weekend of the year is available.',
+          },
+          {
+            description: 'Designate a member(s) as the Bottles For Life Coordinator.',
+          },
+          {
+            description:
+              'Contact the Center to schedule your campaign and order your supplies. Amnion will provide the baby bottles, promotional materials, and return tags.',
+          },
+          {
+            description: 'Distribute the bottles on the allocated date.',
+          },
+          {
+            description:
+              'Allow 3-5 weeks after bottle distribution for collection of the bottles (filled with cash, checks, or coins).',
+          },
+          {
+            description: 'Thank the congregation for their support and announce the total funds raised.',
+          },
+        ]}
+      />
+    </Fragment>
+    <Fragment slot='bg'>
+      <div class='absolute inset-0 bg-primary'></div>
+    </Fragment>
+  </Content>
+
+  <Content>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>Additional Resources</h2>
+      <p class='paragraph'>
+        All our publications are free. <a href='mail:'>Email Michele</a> or call us at <a href='tel:952-898-4350'
+          >952-898-4350</a
+        > to place your order.
+      </p>
+      <!-- Start Resources Grid -->
+      <div class='mt-4 grid grid-cols-3'>
+        {
+          // printResources.map((resource) => (
+          //   <div class='bg-white p-3 rounded-md'>
+          //     <div class='w-full aspect-video bg-slate-500 rounded-md' />
+          //     <h3 class='my-4 text-primary text-lg'>{resource.title}</h3>
+          //     <Button variant='primary'>Preview</Button>
+          //   </div>
+          // ))
+        }
+      </div>
+    </Fragment>
+  </Content>
+</Layout>
