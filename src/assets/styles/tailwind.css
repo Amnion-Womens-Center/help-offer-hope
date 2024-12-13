@@ -60,7 +60,7 @@
   }
 
   .paragraph-small {
-    @apply paragraph-base tracking-tight;
+    @apply paragraph-base tracking-wide;
   }
 }
 

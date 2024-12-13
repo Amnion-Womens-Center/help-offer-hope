@@ -26,7 +26,7 @@ const metadata = {
 
   <Content
     id='clients'
-    isAfterContent={true}
+    isDark={true}
   >
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>To potential clients</h3>
@@ -48,36 +48,14 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <Content
-    id='schools'
-    isAfterContent={true}
-  >
-    <Fragment slot='content'>
-      <h3 class='heading text-4xl'>To your school</h3>
-      <p class='paragraph mb-5'>
-        “I’m Worth Waiting For!” is Amnion’s fun, interactive presentation that we share with our local high school
-        health classes. Our speakers present how to avoid sexual risk and how to have healthy relationships in a dynamic
-        way.
-      </p>
-      <Button
-        href='/help/partner'
-        variant='primary'
-        >Contact us for more information</Button
-      >
-    </Fragment>
-  </Content>
-
-  <Content
-    id='church'
-    isAfterContent={true}
-  >
+  <Content id='church'>
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>To your church</h3>
       <p class='paragraph mb-5'>
         Vital to our ministry are the partnerships we have with local churches. You can help promote Amnion to your
         congregation in the following ways:
       </p>
-      <ul class='list-disc list-inside paragraph-small mb-5'>
+      <ul class='list-disc list-outside pl-5 paragraph-small leading-7 mb-5 text-base [&>li]:mb-2'>
         <li>Make sure your Pastor and Youth Pastor are aware of Amnion and our free and confidential services.</li>
         <li>Be a cheerleader in your congregation by promoting our events.</li>
         <li>Bottles for Life is an easy way to promote Amnion and help support our mission. Learn more.</li>
@@ -87,16 +65,16 @@ const metadata = {
         </li>
         <li>Encourage your church leaders to participate in Sanctity of Human Life Sunday in January.</li>
         <li>Gather a group from your church and commit to praying for Amnion regularly.</li>
-        <li>
-          Pastors: Be sure to sign up for our Executive Director’s Pastor Briefing to stay informed about Amnion.
-          Complete the form to the right.
-        </li>
       </ul>
     </Fragment>
     <Fragment slot='image'>
+      <h3 class='heading text-xl mb-2'>Pastor Briefing Sign Up</h3>
+      <p class='paragraph mb-5'>
+        Pastors, be sure to sign up for our Executive Director’s Pastor Briefing to stay informed about Amnion.
+      </p>
       <Contact
+        classes={{ container: '!p-0' }}
         id='pastor-briefing'
-        title='Pastor Briefing Sign Up'
         inputs={[
           {
             type: 'text',
@@ -116,48 +94,20 @@ const metadata = {
         ]}
       />
     </Fragment>
+    <Fragment slot='bg'>
+      <div class='absolute inset-0 bg-muted'></div>
+    </Fragment>
   </Content>
 
-  <Content
-    id='clients'
-    isAfterContent={true}
-  >
+  <Content id='clients'>
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>To potential donors</h3>
       <p class='paragraph mb-5'>
         For 30 years Amnion has been faithfully supported by a wonderful group of donors who love life! Perhaps you have
         family or friends who are champions for the unborn and are looking for a life-affirming ministry to support.
-        Tell them about Amnion or host an Amnion in a Box event in your home (see below).
+        Help us get the next generation of supporters on board by encouraging your kids, grandkids, and nieces and
+        nephews to pray for and donate to Amnion or their own local pro-life pregnancy center.
       </p>
-      <p class='paragraph mb-5'>
-        For 30 years Amnion has been faithfully supported by a wonderful group of donors who love life! Perhaps you have
-        family or friends who are champions for the unborn and are looking for a life-affirming ministry to support.
-        Tell them about Amnion or host an Amnion in a Box event in your home (see below).
-      </p>
-    </Fragment>
-  </Content>
-
-  <Content
-    id='clients'
-    isAfterContent={true}
-  >
-    <Fragment slot='content'>
-      <h3 class='heading text-4xl'>Amnion in a Box</h3>
-      <p class='paragraph mb-5'>
-        A fun and inspiring way to promote Amnion is by hosting an <strong>Amnion in a Box</strong> event! Everything you
-        need for a successful event is in this box. The goal is to promote the sanctify of life and to broaden the base of
-        support for the ministry of Amnion Pregnancy Center.
-      </p>
-      <p class='paragraph mb-5'>
-        For 30 years Amnion has been faithfully supported by a wonderful group of donors who love life! Perhaps you have
-        family or friends who are champions for the unborn and are looking for a life-affirming ministry to support.
-        Tell them about Amnion or host an Amnion in a Box event in your home (see below).
-      </p>
-      <Button
-        href='/help/partner'
-        variant='primary'
-        >Contact us for more information</Button
-      >
     </Fragment>
   </Content>
 </Layout>

@@ -4,7 +4,9 @@ import Hero2 from '~/components/widgets/Hero2.astro';
 
 import Layout from '~/layouts/PageLayout.astro';
 
-import historyImage from '~/assets/images/Amnions-first-board-1991.webp';
+import image from '~/assets/images/Amnion-office.jpg';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features.astro';
 
 const metadata = {
   title: 'About us',
@@ -14,7 +16,47 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero Widget ******************* -->
 
-  <Hero2
+  <!-- <Hero title='Center Tours'>
+    <Fragment slot='content'>
+      <img
+        class='mt-8 w-full max-w-5xl rounded-lg'
+        src={image.src}
+      />
+    </Fragment>
+  </Hero> -->
+  <Content>
+    <Fragment slot='content'>
+      <h1
+        class='heading text-5xl font-bold mb-4 font-heading dark:text-gray-200 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade'
+      >
+        Center Tours
+      </h1>
+      <p class='paragraph text-xl max-w-5xl leading-relaxed'>
+        Come and see what the Lord is doing through Amnion by scheduling a tour on an upcoming Tuesday. We want people
+        to be more aware of Amnion and our services, so call us at 952-898-4350 to schedule a tour.
+      </p>
+      <Features2
+        classes={{ container: '!pt-8 !pb-8 !px-0 text-left max-w-[unset]' }}
+        columns={3}
+        items={[
+          {
+            description: 'Any Tuesday between 9:00 a.m. and 3:00 p.m.',
+            icon: 'tabler:calendar-event',
+          },
+          {
+            description: 'Amnion Women’s Center 13775 Nicollet Ave S Burnsville, MN 55337',
+            icon: 'tabler:map-pin',
+          },
+        ]}
+      />
+      <img
+        class='mt-8 w-full rounded-xl'
+        src={image.src}
+      />
+    </Fragment>
+  </Content>
+
+  <!-- <Hero2
     title='Center Tours'
     subtitle='Come and see what the Lord is doing through Amnion by scheduling a tour on an upcoming Tuesday. We want people to be more aware of Amnion and our services, so call us at 952-898-4350 to schedule a tour.'
     actions={[
@@ -25,5 +67,5 @@ const metadata = {
       src: 'https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1626&q=80',
       alt: 'Children telling a story. Long-form Sales Landing Page demo',
     }}
-  />
+  /> -->
 </Layout>

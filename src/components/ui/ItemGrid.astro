@@ -45,7 +45,9 @@ const {
             </div>
             <div class='mt-0.5'>
               {title && (
-                <h3 class={twMerge('text-xl font-bold text-primary', titleClass, itemClasses?.title)}>{title}</h3>
+                <h3 class={twMerge('text-xl font-bold text-primary dark:text-white', titleClass, itemClasses?.title)}>
+                  {title}
+                </h3>
               )}
               {description && (
                 <p
