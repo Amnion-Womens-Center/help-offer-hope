@@ -1,0 +1,21 @@
+---
+const { title, items = [], id, isDark = false, bg = await Astro.slots.render('bg') } = Astro.props;
+---
+
+{title && <h3 class='heading font-semibold text-2xl'>{title}</h3>}
+<div class='flex flex-wrap gap-4'>
+  {
+    items.map((emp) => (
+      <div class='bg-white rounded-lg basis-52 text-center'>
+        <img
+          class='width-full rounded-t-lg'
+          src={emp.headshot}
+        />
+        <div class='p-4'>
+          <h4 class='heading font-bold mb-1'>{emp.name}</h4>
+          <h5 class='paragraph text-base'>{emp.role}</h5>
+        </div>
+      </div>
+    ))
+  }
+</div>

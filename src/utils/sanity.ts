@@ -13,7 +13,7 @@ export const getResources = async () => {
 };
 
 export const getEmployees = async () => {
-  return await sanityClient.fetch(`*[_type == "employee"] | order(name desc) {
+  return await sanityClient.fetch(`*[_type == "employee"] | order(name asc) {
     name,
     role,
     department,

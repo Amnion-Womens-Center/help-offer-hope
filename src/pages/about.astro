@@ -6,6 +6,7 @@ import ItemGrid from '~/components/ui/ItemGrid.astro';
 import { getAboutContent, getEmployees } from '~/utils/sanity';
 import { toHTML } from '@portabletext/to-html';
 import { PortableText } from 'astro-portabletext';
+import EmployeeList from '~/components/employee/EmployeeList.astro';
 
 const employees = await getEmployees();
 const donorSupportEmployees = employees.filter((emp) => emp.department == 'donor-support');
@@ -112,24 +113,17 @@ const metadata = {
   <Content>
     <Fragment slot='content'>
       <h2 class='heading text-4xl mb-8'>Our Team</h2>
+      <div class='mb-12'>
+        <EmployeeList
+          title='Donor and Support Services'
+          items={donorSupportEmployees}
+        />
+      </div>
       <div>
-        <h3 class='heading font-semibold text-2xl'>Donor and Support Services</h3>
-        <div class='flex flex-wrap gap-4'>
-          {
-            donorSupportEmployees.map((emp) => (
-              <div class='bg-white rounded-lg basis-60 text-center'>
-                <img
-                  class='width-full rounded-t-lg'
-                  src={emp.headshot}
-                />
-                <div class='p-4'>
-                  <h4 class='heading font-bold mb-1'>{emp.name}</h4>
-                  <h5 class='paragraph'>{emp.role}</h5>
-                </div>
-              </div>
-            ))
-          }
-        </div>
+        <EmployeeList
+          title='Patient and Client Services'
+          items={patientClientEmployees}
+        />
       </div>
     </Fragment>
   </Content>
