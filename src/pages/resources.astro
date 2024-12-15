@@ -81,7 +81,7 @@ const digitalResources = resources.filter((resource) => resource.type == 'downlo
     <Fragment slot='content'>
       <h2 class='heading text-4xl text-center'>More pro-life resources</h2>
       <Brands
-        classes={{ container: '!pt-0' }}
+        classes={{ container: '!py-0' }}
         images={page.externalResources.map((resource) => {
           return { src: resource.image, alt: resource.name, href: resource.link };
         })}
