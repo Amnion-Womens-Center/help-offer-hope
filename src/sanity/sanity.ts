@@ -56,6 +56,28 @@ export const getAboutContent = async () => {
   return data[0];
 };
 
+export const getUpcomingEvents = async () => {
+  return await sanityClient.fetch(`*[_type == "event" && defined(slug) && defined(date) && dateTime(now()) < dateTime(date + 'T00:00:00Z')] | order(date desc) {
+  name,
+  description,
+  date,
+  "slug": slug.current,
+  "series": series->,
+  "image": image.asset->url,
+}`);
+};
+
+export const getPastEvents = async () => {
+  return await sanityClient.fetch(`*[_type == "event" && defined(slug) && defined(date) && dateTime(now()) > dateTime(date + 'T00:00:00Z')] | order(date desc) {
+  name,
+  description,
+  date,
+  "slug": slug.current,
+  "series": series->,
+  "image": image.asset->url,
+}`);
+};
+
 export const getEventSlugs = async () => {
   return await sanityClient.fetch(`*[_type == "event" && defined(slug)] | order(name desc) {
     "slug": slug.current

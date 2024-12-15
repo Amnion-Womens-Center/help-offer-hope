@@ -1,0 +1,100 @@
+---
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Content from '~/components/widgets/Content.astro';
+import Brands from '~/components/widgets/Brands.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Button from '~/components/ui/Button.astro';
+import ResourcesWidget from '~/components/widgets/Resources.astro';
+import { PortableText } from 'astro-portabletext';
+import dateFormat from 'dateformat';
+
+const { event = {} } = Astro.props;
+---
+
+<!-- Hero2 Widget ******************* -->
+<Hero title={event.name}>
+  <Fragment slot='content'>
+    <Features2
+      classes={{ container: '!pt-4 !pb-0' }}
+      columns={2}
+      items={[
+        {
+          title: dateFormat(event.date, 'dddd, mmmm dS, yyyy'),
+          description: '6pm-9pm',
+          icon: 'tabler:calendar-event',
+        },
+        {
+          title: event.location,
+          description: event.address,
+          icon: 'tabler:map-pin',
+        },
+      ]}
+    />
+    <Button
+      class='mt-12 mb-8 text-xl'
+      variant='primary'
+      >Register now</Button
+    >
+  </Fragment>
+</Hero>
+
+<Content id='bottles'>
+  <Fragment slot='content'>
+    <div class='paragraph mb-5 max-w-[1200px] mx-auto text-center text-2xl leading-relaxed text-balance'>
+      <PortableText value={event.description} />
+    </div>
+    {
+      (event.goal || event.actual) && (
+        <Stats
+          classes={{ container: '!pt-8 !pb-0' }}
+          stats={[
+            { title: 'Goal', amount: event.goal },
+            // { title: 'Actual', amount: '$292,000' },
+          ]}
+        />
+      )
+    }
+    <img
+      class='w-full max-w-5xl mx-auto mt-28 mb-8 h-auto rounded-lg'
+      src={event.image}
+    />
+  </Fragment>
+  <Fragment slot='bg'>
+    <div class='absolute inset-0 bg-muted dark:bg-transparent'></div>
+  </Fragment>
+</Content>
+
+{
+  event.additional && (
+    <Content>
+      <Fragment slot='content'>
+        <h3 class='heading text-4xl'>Additional Info</h3>
+        <div class='paragraph mb-5'>
+          <PortableText value={event.additional} />
+        </div>
+      </Fragment>
+    </Content>
+  )
+}
+
+{
+  event.resources && (
+    <ResourcesWidget
+      isDark={true}
+      title='Promotional Resources'
+      items={event.resources}
+    />
+  )
+}
+
+{
+  event.sponsors && (
+    <Brands
+      title='Special thanks to our sponsors'
+      images={event.sponsors.map((sponsor) => {
+        return { src: sponsor.image, alt: sponsor.name };
+      })}
+    />
+  )
+}

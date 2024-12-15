@@ -3,10 +3,11 @@ import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import Headline from '~/components/ui/Headline.astro';
 import type { Resources as Props } from '~/types';
 import Button from '../ui/Button.astro';
+import { PortableText } from 'astro-portabletext';
 
 const {
   title = await Astro.slots.render('title'),
-  subtitle = await Astro.slots.render('subtitle'),
+  subtitle,
   tagline = await Astro.slots.render('tagline'),
   items = [],
   columns = 2,
@@ -33,11 +34,11 @@ const {
       tagline={tagline}
       classes={classes?.headline as Record<string, string>}
     /> -->
+    <p class='text-secondary font-bold mb-2 text-xl'>{tagline}</p>
     <h2 class='heading text-4xl'>{title}</h2>
-    <p
-      class='paragraph'
-      set:html={subtitle}
-    />
+    <div class='paragraph'>
+      <PortableText value={subtitle} />
+    </div>
     <!-- Start Resources Grid -->
     <div class='mt-4 grid grid-cols-3 gap-4'>
       {

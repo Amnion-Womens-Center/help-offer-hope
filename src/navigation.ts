@@ -1,4 +1,5 @@
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
+import { getUpcomingEvents } from './sanity/sanity';
 
 export const headerData = {
   isSticky: false,
@@ -39,18 +40,17 @@ export const headerData = {
       text: 'Events',
       href: '/events',
       links: [
-        {
-          text: 'Gala',
-          href: getPermalink('/events/gala'),
-        },
-        {
-          text: 'Walk for Life',
-          href: getPermalink('/events/walk-for-life'),
-        },
-        {
-          text: 'Gala 2024',
-          href: getPermalink('/events/gala/gala-2024'),
-        },
+        // {
+        //   text: 'Gala',
+        //   href: getPermalink('/events/gala'),
+        // },
+        // {
+        //   text: 'Walk for Life',
+        //   href: getPermalink('/events/walk-for-life'),
+        // },
+        // ...(await getUpcomingEvents()).map((event) => {
+        //   return { text: event.name, href: getPermalink(`/events/${event.slug}`) };
+        // }),
       ],
     },
 

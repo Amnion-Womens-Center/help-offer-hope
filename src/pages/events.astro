@@ -2,10 +2,18 @@
 import Content from '~/components/widgets/Content.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import Button from '~/components/ui/Button.astro';
+import { getPastEvents, getUpcomingEvents } from '~/sanity/sanity';
+import { PortableText } from 'astro-portabletext';
+import dateFormat from 'dateformat';
 
 const metadata = {
   title: 'Printed and Downloadable Resources',
 };
+
+const upcomingEvents = await getUpcomingEvents();
+const pastEvents = await getPastEvents();
+
+export const prerender = false;
 ---
 
 <Layout metadata={metadata}>
@@ -14,19 +22,72 @@ const metadata = {
   <Content classes={{ container: '!pt-8 !pb-0' }}>
     <Fragment slot='content'>
       <h1 class='heading text-4xl md:text-5xl leading-tighter'>Events</h1>
-      <Button variant='primary'>Register for the 2025 Walk for Life</Button>
     </Fragment>
   </Content>
 
   <Content isAfterContent={true}>
     <Fragment slot='content'>
       <h2 class='heading text-4xl'>Upcoming</h2>
+      <div class='grid md:grid-cols-2 xl:grid-cols-3 gap-4'>
+        {
+          upcomingEvents &&
+            upcomingEvents.map((event) => (
+              <div class='group first:col-span-full bg-white grid first:lg:grid-cols-2 items-center gap-x-4 rounded-lg overflow-hidden'>
+                <img
+                  class='self-stretch object-cover w-full max-h-52 lg:[.group:first-child>&]:max-h-[unset]'
+                  src={event.image}
+                />
+                <div class='basis-[600px] py-8 px-6 [&>p]:paragraph [&>p]:mb-12'>
+                  <h3 class='heading text-2xl mb-1'>{event.name}</h3>
+                  <p class='paragraph text-2xl !font-medium !mb-4'>{dateFormat(event.date, 'mmmm dS, yyyy')}</p>
+                  <PortableText value={event.description} />
+                  <Button
+                    variant='primary'
+                    href={`/events/${event.slug}`}
+                  >
+                    View event details
+                  </Button>
+                </div>
+              </div>
+            ))
+        }
+      </div>
     </Fragment>
   </Content>
 
   <Content isAfterContent={true}>
     <Fragment slot='content'>
-      <h2 class='heading text-4xl'>Annual Events</h2>
+      <h2 class='heading text-4xl'>Past</h2>
+      <div class='grid md:grid-cols-2 xl:grid-cols-3 gap-4'>
+        {
+          pastEvents &&
+            pastEvents.map((event) => (
+              <div class='group bg-white grid items-center gap-x-4 rounded-lg overflow-hidden'>
+                <img
+                  class='self-stretch object-cover w-full max-h-52'
+                  src={event.image}
+                />
+                <div class='basis-[600px] py-8 px-6 [&>p]:paragraph [&>p]:mb-12'>
+                  <h3 class='heading text-2xl mb-1'>{event.name}</h3>
+                  <p class='paragraph text-2xl !font-medium !mb-4'>{dateFormat(event.date, 'mmmm dS, yyyy')}</p>
+                  <PortableText value={event.description} />
+                  <Button
+                    variant='primary'
+                    href={`/events/${event.slug}`}
+                  >
+                    View event details
+                  </Button>
+                </div>
+              </div>
+            ))
+        }
+      </div>
     </Fragment>
   </Content>
+
+  <!-- <Content isAfterContent={true}>
+    <Fragment slot='content'>
+      <h2 class='heading text-4xl'>Annual Events</h2>
+    </Fragment>
+  </Content> -->
 </Layout>
