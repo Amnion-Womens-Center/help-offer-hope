@@ -85,7 +85,6 @@ export const getEventSlugs = async () => {
 };
 
 export const getEventBySlug = async (slug) => {
-  console.log(slug);
   return await sanityClient.fetch(
     `*[_type == "event" && slug.current == $slug][0] {
     ...,

@@ -12,7 +12,6 @@ const employees = await getEmployees();
 const donorSupportEmployees = employees.filter((emp) => emp.department == 'donor-support');
 const patientClientEmployees = employees.filter((emp) => emp.department == 'patient-client');
 const aboutContent = await getAboutContent();
-console.log(aboutContent.missionList);
 
 const metadata = {
   title: 'About us',
