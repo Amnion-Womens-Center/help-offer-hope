@@ -3,7 +3,7 @@ import Content from '~/components/widgets/Content.astro';
 import Hero2 from '~/components/widgets/Hero2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 import ItemGrid from '~/components/ui/ItemGrid.astro';
-import { getAboutContent, getEmployees } from '~/utils/sanity';
+import { getAboutContent, getEmployees } from '~/sanity/sanity';
 import { toHTML } from '@portabletext/to-html';
 import { PortableText } from 'astro-portabletext';
 import EmployeeList from '~/components/employee/EmployeeList.astro';
@@ -26,8 +26,8 @@ const metadata = {
     title={aboutContent.heroHeading}
     subtitle={toHTML(aboutContent.heroContent)}
     actions={[
-      { variant: 'primary', text: 'Learn more', href: '#learn-more', icon: 'tabler:square-rounded-arrow-right' },
-      { text: 'Visit client website', href: '#', variant: 'secondary-blue' },
+      { variant: 'primary', text: 'Learn more', href: '#mission-vision', icon: 'tabler:square-rounded-arrow-down' },
+      { text: 'Visit client website', href: 'https://www.amnioncpc.org/', variant: 'secondary-blue' },
     ]}
     image={{
       src: aboutContent.heroImage.src,
@@ -48,7 +48,10 @@ const metadata = {
     }}
   /> -->
 
-  <Content isDark={true}>
+  <Content
+    id='mission-vision'
+    isDark={true}
+  >
     <Fragment slot='content'>
       <h3 class='heading text-4xl'>{aboutContent.missionHeading}</h3>
       <div class='paragraph'>
