@@ -39,7 +39,9 @@ export const getResourcesPage = async () => {
         ...,
         resources[]->{
           ...,
-        "images": images[].asset->url
+          images[] {
+            'src': asset->url
+          }
         }
       },
       "videosCollection": videosCollection->{

@@ -93,7 +93,7 @@ const { event = {} } = Astro.props;
     <Brands
       title='Special thanks to our sponsors'
       images={event.sponsors.map((sponsor) => {
-        return { src: sponsor.image, alt: sponsor.name };
+        return { src: sponsor.image, alt: sponsor.name, href: sponsor.link };
       })}
     />
   )
